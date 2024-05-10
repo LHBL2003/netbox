@@ -96,6 +96,7 @@ The following colors are supported:
 
 This is a mapping of models to [custom validators](../customization/custom-validation.md) against which an object is evaluated immediately prior to its deletion. If validation fails, the object is not deleted. An example is provided below:
 
+**Example prevents the deletion of a site entry:**
 ```python
 PROTECTION_RULES = {
     "dcim.site": [
@@ -108,3 +109,28 @@ PROTECTION_RULES = {
     ]
 }
 ```
+
+### Configuration via Web UI
+
+**Path:**
+- WebUI (v3.x.x) --> Admin --> Configuration Config Revisions --> Add (or Edit last Config)
+- WebUI (v4.0.0) --> Admin --> Configuration History  --> Add (or Edit last Config)
+
+**Example prevents the deletion of a device entry:**
+```python
+{
+    "dcim.device": [
+        {
+            "status": {
+                "eq": "decommissioning"
+            }
+        }
+    ]
+}
+```
+
+If you navigate to a device, rack or site, you will find the path in the top right-hand corner.
+Examples:
+- dcim.device
+- dcim.site
+- dcim.rack
